@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="View full charity event details and fundraising progress.">
+  <title>Event Details | HopeBridge</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="detail-page">
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="HopeBridge home"><span class="brand-mark" aria-hidden="true">HB</span><span>HopeBridge</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="primaryNav"><a href="index.html">Home</a><a href="search.html">Search Events</a><a href="index.html#organisations">About Us</a></div>
+    </nav>
+  </header>
+  <main class="detail-shell shell">
+    <a class="back-link" href="search.html"><span aria-hidden="true">&#8592;</span> Back to events</a>
+    <p id="detailMessage" class="message loading" role="status">Loading event details...</p>
+    <article id="detailContent" hidden></article>
+  </main>
+
+  <dialog class="register-dialog" id="registerDialog" aria-labelledby="registerDialogTitle">
+    <form method="dialog">
+      <button class="modal-close" value="close" aria-label="Close registration message">&times;</button>
+      <span class="modal-mark" aria-hidden="true">HB</span>
+      <h2 id="registerDialogTitle">Registration is coming soon</h2>
+      <p>This feature is currently under construction.</p>
+      <button class="button button-primary" value="close">Close</button>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner"><span>HopeBridge Charity Events</span><span>PROG2002 A2 &middot; All sample content is fictional.</span></div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
