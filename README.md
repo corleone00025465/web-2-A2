@@ -6,7 +6,7 @@ PROG2002 A2 dynamic charity event browser. All organisations, events and amounts
 
 - Responsive English visitor-facing Home, Search Events and Event Details pages.
 - Database-driven local event imagery and an accessible under-construction registration modal.
-- MySQL-backed organisation, category and event data.
+- MySQL-backed organisation, category and event data with a `DATETIME` event field, `DECIMAL` monetary fields, foreign keys and integrity constraints.
 - Express REST API with GET-only endpoints for A2.
 - Parameterised search queries and public filtering of suspended events.
 - Loading, empty-result, network-error and invalid-event states.
@@ -15,7 +15,7 @@ PROG2002 A2 dynamic charity event browser. All organisations, events and amounts
 ## Setup
 
 1. Install Node.js and npm, then run `npm install`.
-2. Import `database/schema.sql` into MySQL. It creates `charityevents_db`, three related tables and 10 fictional events.
+2. Import `database/schema.sql` into MySQL. It creates `charityevents_db`, three related tables and 10 fictional events, including two suspended records used to verify public API filtering.
 3. Copy `.env.example` to `.env` and set the MySQL password.
 4. Run `npm start` and open `http://localhost:3060`.
 
@@ -35,4 +35,6 @@ POST, PUT and DELETE are intentionally not implemented in A2. Registration is a 
 ## Quality checklist
 
 The implementation separates routes, controllers and database configuration, uses prepared statements, returns meaningful HTTP status codes, filters suspended events in every public event query, and uses responsive UI layouts for desktop and mobile.
+
+The assessed database connection is implemented in `src/event_db.js`. It exports the MySQL connection pool for the API layer and provides a startup connection test with clear success and failure messages. The server does not begin listening until that database test succeeds.
 

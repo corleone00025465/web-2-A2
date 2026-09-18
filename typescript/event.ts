@@ -4,8 +4,7 @@ export interface CharityEvent {
   category_id: number;
   name: string;
   description: string;
-  event_date: string;
-  event_time: string;
+  event_datetime: string;
   location: string;
   purpose: string;
   ticket_price: number;
@@ -17,7 +16,7 @@ export interface CharityEvent {
 export function isValidCharityEvent(event: CharityEvent): boolean {
   return Boolean(
     event.name.trim() && event.description.trim() && event.location.trim() && event.purpose.trim() &&
-      /^\d{4}-\d{2}-\d{2}$/.test(event.event_date) && /^\d{2}:\d{2}/.test(event.event_time) &&
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/.test(event.event_datetime) &&
       event.ticket_price >= 0 && event.charity_goal > 0 && event.current_progress >= 0
   );
 }

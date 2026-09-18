@@ -22,7 +22,7 @@
       <aside class="filter-panel" aria-labelledby="filterTitle">
         <h2 id="filterTitle">Filter events</h2>
         <form id="searchForm" class="filters">
-          <label class="field" for="date">Event date<input id="date" name="date" type="text" inputmode="numeric" maxlength="10" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" title="Enter a date in YYYY-MM-DD format."></label>
+          <label class="field" for="date">Event date<input id="date" name="date" type="date"></label>
           <label class="field" for="location">Location<input id="location" name="location" type="search" maxlength="100" placeholder="Brisbane, Sydney..."></label>
           <label class="field" for="category">Category<select id="category" name="category"><option value="">All categories</option></select></label>
           <div class="filter-actions"><button class="button button-primary" type="submit">Search Events</button><button class="button button-secondary" id="clear" type="button">Clear Filters</button></div>
