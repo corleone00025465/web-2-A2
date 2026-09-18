@@ -2,8 +2,8 @@ const db = require('../event_db');
 
 const fields = `
   e.id, e.name, e.description,
-  DATE_FORMAT(e.event_date, '%Y-%m-%d') AS event_date,
-  TIME_FORMAT(e.event_time, '%H:%i') AS event_time,
+  DATE_FORMAT(e.event_datetime, '%Y-%m-%d') AS event_date,
+  TIME_FORMAT(e.event_datetime, '%H:%i') AS event_time,
   e.location, e.purpose, e.image_path, e.ticket_price, e.charity_goal, e.current_progress,
   c.id AS category_id, c.name AS category_name, c.description AS category_description,
   o.id AS organisation_id, o.name AS organisation_name, o.mission AS organisation_mission,
@@ -46,7 +46,7 @@ exports.organisations = async (_req, res, next) => {
 
 exports.list = async (_req, res, next) => {
   try {
-    const [rows] = await db.query(`SELECT ${fields}${joins}${publicOnly} ORDER BY e.event_date, e.event_time`);
+    const [rows] = await db.query(`SELECT ${fields}${joins}${publicOnly} ORDER BY e.event_datetime`);
     res.json(rows);
   } catch (error) {
     next(error);
@@ -69,7 +69,7 @@ exports.search = async (req, res, next) => {
     let sql = `SELECT ${fields}${joins}${publicOnly}`;
 
     if (date) {
-      sql += ' AND e.event_date = ?';
+      sql += ' AND DATE(e.event_datetime) = ?';
       values.push(date);
     }
     if (location) {
@@ -81,7 +81,7 @@ exports.search = async (req, res, next) => {
       values.push(category);
     }
 
-    sql += ' ORDER BY e.event_date, e.event_time';
+    sql += ' ORDER BY e.event_datetime';
     const [rows] = await db.query(sql, values);
     res.json(rows);
   } catch (error) {
